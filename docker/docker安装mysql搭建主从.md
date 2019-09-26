@@ -64,6 +64,7 @@ master_connect_retry = 30;
 >docker inspect --format='{{.NetworkSettings.IPAddress}}' 容器名称 | 容器id
 
 >查询容器的 ip
+
 ![](assets/markdown-img-paste-20190926115222899.png)
 
 >master_port：Master 的端口号，指的是容器的端口号
