@@ -6,6 +6,36 @@ docker search mysql:5.7
 docker pull mysql:5.7
 # 运行mysql容器
 
+### 建立配置文件
+![](assets/markdown-img-paste-20190926144820868.png)
+#### master配置文件
+vim master/conf/my.cnf
+```
+[mysqld]
+server_id = 1
+log-bin= mysql-bin
+read-only=0
+replicate-ignore-db=mysql
+replicate-ignore-db=sys
+replicate-ignore-db=information_schema
+replicate-ignore-db=performance_schema
+```
+#### slave配置文件
+vim slave/conf/my.cnf
+```
+[mysqld]
+server_id = 2
+log-bin= mysql-bin
+log_slave_updates=1
+read-only=1
+replicate-ignore-db=mysql
+replicate-ignore-db=sys
+replicate-ignore-db=information_schema
+replicate-ignore-db=performance_schema
+```
+> 注：从库还需要添加一个参数：log-slave-updates，log-slave-updates参数默认是关闭的状态，如果不手动设置，那么bin-log只会记录直接在主库上执行的SQL语句，由replication机制的SQL线程读取relay-log而执行的SQL语句并不会记录到bin-log，那么就无法实现从库binlog的实时同步。
+
+
 ### 运行mysql-master
 docker run --name mastermysql \
 -p 3307:3306 \
