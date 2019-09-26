@@ -73,8 +73,7 @@ CREATE USER 'binlog'@'%' IDENTIFIED BY 'binlog';
 ### 授权binlog用户拥有binlog库所有表的所有权限
 GRANT ALL ON binlog.* TO 'binlog'@'%';
 ### 授予用户 binlog REPLICATION SLAVE 权限和 REPLICATION CLIENT 权限，用于在主从库之间同步数据。
-GRANT REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'binlog'@'%';
-
+GRANT REPLICATION SLAVE, REPLICATION CLIENT ON \*.\* TO 'binlog'@'%';
 
 # 进入salve容器
 docker exec -it slavemysql bash
