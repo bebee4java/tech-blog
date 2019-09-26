@@ -58,18 +58,29 @@ master_log_file = 'mysql-bin.000003', \
 master_log_pos = 154, \
 master_connect_retry = 30;
 
-## 注：
->master_host ：Master 的地址，指的是容器的独立 ip, 可以通过 docker inspect --format='{{.NetworkSettings.IPAddress}}' 容器名称 | 容器 id 查询容器的 ip
+**注：**
+>master_host ：Master 的地址，指的是容器的独立 ip, 可以通过
+
+>docker inspect --format='{{.NetworkSettings.IPAddress}}' 容器名称 | 容器id
+
+>查询容器的 ip
 ![](assets/markdown-img-paste-20190926115222899.png)
+
 >master_port：Master 的端口号，指的是容器的端口号
+
 >master_user：用于数据同步的用户
+
 >master_password：用于同步的用户的密码
+
 >master_log_file：指定 Slave 从哪个日志文件开始复制数据，即上文中提到的 File 字段的值（主库记录的值）
+
 >master_log_pos：从哪个 Position 开始读，即上文中提到的 Position 字段的值（主库的pos值）
+
 >master_connect_retry：如果连接失败，重试的时间间隔，单位是秒，默认是 60 秒
 
 # 查询主从同步状态:
 show slave status \G;
+
 ![](assets/markdown-img-paste-20190926115401342.png)
 
 # 开启主从复制过程
