@@ -59,11 +59,9 @@ master_log_pos = 154, \
 master_connect_retry = 30;
 
 **注：**
->master_host ：Master 的地址，指的是容器的独立 ip, 可以通过
+>master_host ：Master 的地址，指的是容器的独立ip, 可以通过下面命令查询：
 
 >docker inspect --format='{{.NetworkSettings.IPAddress}}' 容器名称 | 容器id
-
->查询容器的 ip
 
 ![](assets/markdown-img-paste-20190926115222899.png)
 
